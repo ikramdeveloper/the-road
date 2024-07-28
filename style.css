@@ -1,9 +1,9 @@
-/* Common Styles */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
   font-family: "Vollkorn", serif;
-  list-style-type: none;
+  list-style: none;
   text-decoration: none;
   box-sizing: border-box;
   outline: none;
@@ -34,15 +34,14 @@ html {
   overflow: hidden;
 }
 
-/* End of Common styles */
-
-/* Navbar */
+/* Navbar Styles */
 .navbar-icon {
   width: 5.5rem;
   height: 5.5rem;
   background-color: var(--white-color);
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
   flex-direction: column;
 }
 
@@ -72,7 +71,7 @@ html {
   bottom: -100%;
   opacity: 0;
   z-index: 300;
-  padding: 3.5rem 5.5rem 3.5rem 3.5rem;
+  padding: 3.5rem 5.5rem;
   transition: bottom 0.5s, opacity 0.2s;
 }
 
@@ -85,8 +84,7 @@ html {
 .navbar {
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-    url(images/navbar-bg.jpg) center no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(images/navbar-bg.jpg) center no-repeat;
   background-size: cover;
   position: relative;
   overflow-y: hidden;
@@ -125,7 +123,7 @@ html {
   opacity: 0.8;
   position: relative;
   top: -100%;
-  transition: all 0.3s;
+  transition: top 0.3s, opacity 0.3s, color 0.3s;
 }
 
 .change .nav-link {
@@ -138,32 +136,30 @@ html {
 }
 
 .change .nav-link:nth-child(1) {
-  transition: top 1s 0.4s, opacity 0.3s, color 0.3s;
+  transition-delay: 0.4s;
 }
 
 .change .nav-link:nth-child(2) {
-  transition: top 1s 0.6s, opacity 0.3s, color 0.3s;
+  transition-delay: 0.6s;
 }
 
 .change .nav-link:nth-child(3) {
-  transition: top 1s 0.8s, opacity 0.3s, color 0.3s;
+  transition-delay: 0.8s;
 }
 
 .change .nav-link:nth-child(4) {
-  transition: top 1s 1s, opacity 0.3s, color 0.3s;
+  transition-delay: 1s;
 }
 
 .change .nav-link:nth-child(5) {
-  transition: top 1s 1.2s, opacity 0.3s, color 0.3s;
+  transition-delay: 1.2s;
 }
-/* End of Navbar */
 
-/* Header */
+/* Header Styles */
 .header {
   width: 100%;
   height: calc(100vh - 7rem);
-  background: linear-gradient(rgba(18, 113, 255, 0.5), rgba(18, 113, 255, 0.3)),
-    url(images/header-bg.jpg) center no-repeat;
+  background: linear-gradient(rgba(18, 113, 255, 0.5), rgba(18, 113, 255, 0.3)), url(images/header-bg.jpg) center no-repeat;
   background-size: cover;
   position: relative;
   perspective: 100rem;
@@ -240,20 +236,11 @@ html {
 }
 
 @keyframes drop-letters {
-  0% {
-    transform: translateY(0);
-  }
-  10% {
+  0%, 10%, 20%, 100% {
     transform: translateY(0);
   }
   15% {
     transform: translateY(-100%);
-  }
-  20% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(0);
   }
 }
 
@@ -263,7 +250,7 @@ html {
 }
 
 @keyframes image-float {
-  0% {
+  0%, 100% {
     transform: translateZ(40rem);
     opacity: 1;
   }
@@ -279,14 +266,9 @@ html {
     transform: translateZ(-50rem) translateX(100rem);
     opacity: 0.8;
   }
-  100% {
-    transform: translateZ(40rem);
-    opacity: 1;
-  }
 }
-/* End of Header */
 
-/* Popular tours */
+/* Popular Tours Styles */
 .popular-tours {
   padding: 5rem 0 10rem 0;
 }
@@ -302,6 +284,7 @@ html {
 .cards-wrapper {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -315,17 +298,15 @@ html {
   border-radius: 0.3rem 0.3rem 0 0;
 }
 
-.front-side {
+.front-side, .back-side {
   text-align: center;
   background-color: var(--white-color);
   border-radius: 0.3rem;
   position: relative;
-  z-index: 10;
-  opacity: 0.9;
   transition: opacity 0.4s, transform 0.4s, box-shadow 0.4s;
 }
 
-.change > .front-side {
+.change .front-side {
   transform: translateZ(-5rem) translateX(3rem);
   box-shadow: 0 2rem 4rem #777;
   opacity: 0.5;
@@ -359,404 +340,128 @@ html {
 }
 
 .back-side {
-  position: absolute;
-  top: 0;
   background-color: var(--primary-color);
-  width: 100%;
-  height: 100%;
-  border-radius: 0.3rem;
   box-shadow: 0 2rem 4rem #777;
   flex-direction: column;
   transform: translateZ(-5rem) translateX(3rem);
   opacity: 0.5;
-  transition: opacity 0.4s, transform 0.4s, box-shadow 0.4s;
 }
 
-.change > .back-side {
+.change .back-side {
   transform: translateZ(0) translateX(0);
-  box-shadow: 0 0.5rem 2rem #aaa;
-  opacity: 0.9;
+  opacity: 1;
+  z-index: 1;
 }
 
-.tour-price {
-  font-size: 5rem;
-  font-weight: 300;
-  color: var(--white-color);
-  margin-bottom: 3rem;
-}
-
-.card-button {
-  color: var(--primary-color);
+.book-btn {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
   background-color: var(--white-color);
-  border: none;
-  font-size: 2.5rem;
-  padding: 1rem 2rem;
-  letter-spacing: 0.2rem;
-  border-radius: 5rem;
-  cursor: pointer;
-}
-
-.navigation-button {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: var(--light-grey-color);
-  border-radius: 0.3rem;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  cursor: pointer;
-}
-/* End of Popular tours */
-
-/* Stories */
-.stories {
-  padding: 10rem 0;
-  position: relative;
-}
-
-.video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.4;
-}
-
-.bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.stories-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.story-bg {
-  background-color: rgba(238, 238, 238, 0.85);
-  padding: 5rem;
-  margin: 5rem;
-  width: 70%;
-  box-shadow: 0 2rem 5rem rgba(51, 51, 51, 0.4);
-  transform: skewX(20deg);
-}
-
-.story {
-  transform: skewX(-20deg);
-  display: flex;
-}
-
-.story-image {
-  width: 20rem;
-  height: 20rem;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 5rem;
-}
-
-.story-text {
-  letter-spacing: 0.1rem;
-}
-
-.story-heading {
-  font-size: 2.5rem;
-  text-transform: uppercase;
   color: var(--grey-color);
-  margin-bottom: 1rem;
+  padding: 1.5rem 4rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  transition: transform 0.4s;
 }
 
-.story-paragraph {
-  font-size: 1.8rem;
-  color: var(--light-grey-color);
+.book-btn:hover {
+  transform: scale(1.1);
 }
 
-.story-paragraph::first-letter {
-  margin-left: 1rem;
+.tour-info {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white-color);
+  width: 80%;
+  margin: auto;
+  padding: 1rem 0 3rem 0;
 }
-/* End of Stories */
 
-/* Contact */
-.contact {
-  padding: 15rem 0 20rem 0;
+/* Our Services Styles */
+.our-services {
+  padding: 10rem 0;
+}
+
+.services-heading {
+  font-size: 8rem;
   text-align: center;
-  background: url(images/contact-us-bg.png) center no-repeat;
-  background-size: cover;
-  animation: contact-bg 35s infinite;
+  color: var(--primary-color);
+  text-shadow: 0 0.1rem 0.2rem var(--primary-color);
+  margin-bottom: 10rem;
+}
+
+.service {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.service-title {
+  font-size: 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.service-paragraph {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--grey-color);
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+/* Contact Us Styles */
+.contact {
+  background-color: var(--primary-color);
+  padding: 8rem 0;
 }
 
 .contact-heading {
-  font-size: 7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5rem;
+  font-size: 8rem;
+  text-align: center;
   color: var(--white-color);
-  text-shadow: 0 1rem 2rem #000;
-  margin-bottom: 8rem;
+  text-shadow: 0 0.1rem 0.2rem var(--white-color);
+  margin-bottom: 5rem;
 }
 
 .contact-form {
-  width: 70rem;
-  height: 50rem;
-  background-color: rgba(255, 255, 255, 0.95);
+  width: 40%;
   margin: auto;
-  flex-direction: column;
-  border-radius: 0.5rem;
-  box-shadow: 0 1rem 3rem #000;
-  padding: 5rem;
 }
 
-.input-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
-  position: relative;
+.contact-form-group {
+  margin-bottom: 2rem;
 }
 
-.input-groups {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.input-groups .input-group {
-  width: 48.5%;
-}
-
-.input-group input,
-.input-group textarea {
-  padding: 3rem 1rem 1rem 1rem;
-  background-color: var(--secondary-color);
-  border: 0.1rem solid var(--secondary-color);
-  font-size: 1.4rem;
-  color: var(--light-grey-color);
-  letter-spacing: 0.1rem;
-  border-radius: 0.5rem;
-  transition: border 0.3s;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-  border: 0.1rem solid #ccc;
-}
-
-.input-group label {
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  color: var(--grey-color);
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-
-.form-btn {
-  width: 100%;
-  padding: 1rem;
+.contact-form-label {
   font-size: 1.6rem;
-  letter-spacing: 0.1rem;
-  margin-top: 1rem;
-  background-color: var(--light-grey-color);
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--white-color);
-  border-radius: 0.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-input {
+  width: 100%;
+  padding: 1.5rem;
   border: none;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.contact-form-input[type="submit"] {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.4s;
 }
 
-.form-btn:hover {
+.contact-form-input[type="submit"]:hover {
   background-color: var(--grey-color);
-}
-
-.input-group textarea {
-  max-height: 15rem;
-  max-width: 100%;
-}
-
-@keyframes contact-bg {
-  0% {
-    background-color: #3d3d3d;
-  }
-  25% {
-    background-color: #ced8e4;
-  }
-  50% {
-    background-color: #1e81f3;
-  }
-  75% {
-    background-color: #ff7842;
-  }
-  100% {
-    background-color: #3d3d3d;
-  }
-}
-/* End of Contact */
-
-/* Footer */
-.footer {
-  background-color: var(--grey-color);
-  padding: 4rem 0 2rem 0;
-}
-
-.footer-list {
-  display: flex;
-  justify-content: center;
-}
-
-.footer-link {
-  font-size: 2rem;
   color: var(--white-color);
-  margin: 0 2rem;
-  background-color: var(--grey-color);
-  padding: 0.3rem 3rem;
-  letter-spacing: 0.3rem;
-  transition: all 0.2s;
-}
-
-.footer-link:hover {
-  transform: rotate(-10deg);
-  box-shadow: 0 2rem 3rem #000;
-}
-
-.footer-paragraph {
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--secondary-color);
-  letter-spacing: 0.2rem;
-  margin-top: 5rem;
-}
-/* End of Footer */
-
-@media (max-width: 1200px) {
-  .cards-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    margin: 3rem 0;
-  }
-
-  .story-bg {
-    width: 85%;
-  }
-}
-
-@media (max-width: 1000px) {
-  .nav-list {
-    flex-direction: column;
-  }
-
-  .nav-link {
-    flex-grow: 1;
-  }
-
-  .header-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-  }
-
-  .heading {
-    font-size: 6rem;
-  }
-
-  .header-paragraph {
-    font-size: 2.5rem;
-  }
-
-  .popular-tours-heading {
-    font-size: 6rem;
-  }
-
-  .story-bg {
-    transform: skewX(0);
-  }
-
-  .story {
-    transform: skewX(0);
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .story-image {
-    margin-bottom: 3rem;
-  }
-
-  .footer-link {
-    padding: 0.3rem 2rem;
-    margin: 0 1rem;
-  }
-}
-
-@media (max-width: 800px) {
-  .header-paragraph {
-    display: none;
-  }
-
-  .popular-tours-heading {
-    font-size: 5rem;
-  }
-
-  .contact-form {
-    width: 90%;
-  }
-
-  .footer-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-link {
-    margin: 1rem 0;
-  }
-}
-
-@media (max-width: 650px) {
-  .container {
-    margin: 0;
-  }
-
-  .open-navbar-icon {
-    top: 2.5rem;
-    left: 2.5rem;
-  }
-
-  .navbar-wrapper {
-    padding: 0;
-  }
-
-  .close-navbar-icon {
-    right: 4rem;
-  }
-
-  .header {
-    height: 100vh;
-  }
-
-  .contact-heading {
-    font-size: 6rem;
-  }
-
-  .contact-form {
-    padding: 2rem;
-    height: 40rem;
-  }
-}
-
-@media (max-width: 500px) {
-  html {
-    font-size: 45%;
-  }
 }
