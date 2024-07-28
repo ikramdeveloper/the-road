@@ -1,23 +1,26 @@
-const container = document.querySelector(".container");
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".container");
+  const openNavbarIcon = document.querySelector(".open-navbar-icon");
+  const closeNavbarIcon = document.querySelector(".close-navbar-icon");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const navigationButtons = document.querySelectorAll(".navigation-button");
+  const colors = ["#6495ed", "#7fffd4", "#ffa07a", "#f08080", "#afeeee"];
 
-document.querySelector(".open-navbar-icon").addEventListener("click", () => {
-  container.classList.add("change");
-});
+  openNavbarIcon.addEventListener("click", () => {
+    container.classList.add("change");
+  });
 
-document.querySelector(".close-navbar-icon").addEventListener("click", () => {
-  container.classList.remove("change");
-});
+  closeNavbarIcon.addEventListener("click", () => {
+    container.classList.remove("change");
+  });
 
-const colors = ["#6495ed", "#7fffd4", "#ffa07a", "#f08080", "#afeeee"];
+  navLinks.forEach((item, index) => {
+    item.style.backgroundColor = colors[index % colors.length];
+  });
 
-let i = 0;
-
-Array.from(document.querySelectorAll(".nav-link")).forEach(item => {
-  item.style.cssText = `background-color: ${colors[i++]}`;
-});
-
-Array.from(document.querySelectorAll(".navigation-button")).forEach(item => {
-  item.onclick = () => {
-    item.parentElement.parentElement.classList.toggle("change");
-  };
+  navigationButtons.forEach(item => {
+    item.addEventListener("click", () => {
+      item.closest(".container").classList.toggle("change");
+    });
+  });
 });
